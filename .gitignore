@@ -1,0 +1,23 @@
+# Logs
+*.log
+*.db
+
+# Sing-box cache
+cache.db
+cache.db.bak
+
+# Real configs (never commit these)
+*-real.json
+*-prod.json
+*.key
+*.pem
+
+# Windows
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# Editor
+.vscode/
+.idea/
+*.swp

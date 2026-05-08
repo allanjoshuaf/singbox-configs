@@ -1,0 +1,78 @@
+{
+    log {
+        level INFO
+    }
+    https_port 8443
+    default_bind 127.0.0.1
+    servers {
+        listener_wrappers {
+            proxy_protocol {
+                allow 127.0.0.1/32
+            }
+            tls
+        }
+        protocols h1 h2
+    }
+    auto_https disable_redirects
+}
+
+https://your-domain.com, https://www.your-domain.com {
+    root * C:\singbox\caddy\www
+
+    header {
+        -Server
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "DENY"
+        Referrer-Policy "no-referrer"
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        Cache-Control "public, max-age=0, must-revalidate"
+    }
+
+    handle /api/headers {
+        header Content-Type "application/json"
+        header Access-Control-Allow-Origin "*"
+        header Cache-Control "no-store"
+        respond `{"headers":{"Host":"{http.request.host}","User-Agent":"{http.request.header.User-Agent}","Accept":"{http.request.header.Accept}","Accept-Language":"{http.request.header.Accept-Language}","Accept-Encoding":"{http.request.header.Accept-Encoding}","Sec-Fetch-Site":"{http.request.header.Sec-Fetch-Site}","Sec-Fetch-Mode":"{http.request.header.Sec-Fetch-Mode}","Referer":"{http.request.header.Referer}","X-Forwarded-For":"{http.request.header.X-Forwarded-For}","Via":"{http.request.header.Via}"}}`
+    }
+
+    handle /api/ip {
+        header Content-Type "application/json"
+        header Access-Control-Allow-Origin "*"
+        header Cache-Control "no-store"
+        respond `{"tls":"{http.request.tls.version}","http":"{http.request.proto}","host":"{http.request.host}","scheme":"https"}`
+    }
+
+    handle /api/time {
+        header Content-Type "application/json"
+        header Access-Control-Allow-Origin "*"
+        header Cache-Control "no-store"
+        respond `{"iso":"{time.now.rfc3339}","unix":{time.now.unix}}`
+    }
+
+    handle /api/trace {
+        header Content-Type "application/json"
+        header Access-Control-Allow-Origin "*"
+        header Cache-Control "no-store"
+        respond `{"tls":"{http.request.tls.version}","http":"{http.request.proto}","host":"{http.request.host}","scheme":"https"}`
+    }
+
+    handle {
+        try_files {path} {path}.html
+        file_server
+    }
+
+    handle_errors {
+        rewrite * /404.html
+        file_server
+    }
+}
+
+http://your-domain.com, http://www.your-domain.com {
+    bind 0.0.0.0
+    redir https://your-domain.com{uri} permanent
+}
+
+:80 {
+    bind 0.0.0.0
+    respond 204
+}

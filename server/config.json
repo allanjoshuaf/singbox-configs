@@ -1,0 +1,41 @@
+{
+  "log": {
+    "level": "error",
+    "output": "box.log",
+    "timestamp": true
+  },
+  "inbounds": [
+    {
+      "type": "vless",
+      "tag": "vless-in",
+      "listen": "0.0.0.0",
+      "listen_port": 443,
+      "users": [
+        {
+          "uuid": "YOUR_UUID",
+          "flow": "xtls-rprx-vision"
+        }
+      ],
+      "tls": {
+        "enabled": true,
+        "server_name": "your-domain.com",
+        "reality": {
+          "enabled": true,
+          "handshake": {
+            "server": "127.0.0.1",
+            "server_port": 8443
+          },
+          "private_key": "YOUR_PRIVATE_KEY",
+          "short_id": ["YOUR_SHORT_ID"]
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "direct",
+      "tag": "direct",
+      "domain_strategy": "ipv4_only"
+    }
+  ]
+}
