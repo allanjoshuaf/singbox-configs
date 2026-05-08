@@ -126,7 +126,7 @@
           "EpicWebHelper.exe",
           "Battle.net.exe",
           "nvcontainer.exe",
-          "NvBrowserHelper.exe",
+          "NVIDIA Overlay.exe",
           "gamingservices.exe"
         ],
         "action": "route",
