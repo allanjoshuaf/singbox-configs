@@ -1,11 +1,14 @@
 # singbox-configs
 
-Production-grade VLESS + XTLS-Vision + Reality setup with 
-steal-oneself architecture. Designed to bypass deep packet 
-inspection in heavily censored networks.
+Production-grade encrypted tunneling and routing infrastructure built
+around VLESS + XTLS-Vision + Reality with a self-hosted masquerade
+architecture.
 
-Tested against aggressive DPI infrastructure in restrictive 
-network environments.
+Designed and tested under restrictive and constrained network conditions
+with focus on routing reliability, DNS integrity, TLS consistency and
+protocol-level troubleshooting.
+
+---
 
 ## Architecture
 ```
@@ -85,7 +88,7 @@ server-side. PTR and AAAA queries are rejected to prevent leaks.
 ## Requirements
 
 **Server (Windows)**
-- Sing-box v1.10+
+- Sing-box v1.12+
 - Caddy v2.8+
 - NSSM (service management)
 - Domain with DNS pointing to server IP
@@ -93,7 +96,7 @@ server-side. PTR and AAAA queries are rejected to prevent leaks.
 - Port 80 open (TCP, for HTTP redirect)
 
 **Client**
-- Sing-box v1.10+
+- Sing-box v1.12+
 - Root / admin privileges (TUN requires it)
 
 ## Setup
