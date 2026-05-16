@@ -1,12 +1,9 @@
 # singbox-configs
 
-Production-grade encrypted tunneling and routing infrastructure built
-around VLESS + XTLS-Vision + Reality with a self-hosted masquerade
-architecture.
-
-Designed and tested under restrictive and constrained network conditions
-with focus on routing reliability, DNS integrity, TLS consistency and
-protocol-level troubleshooting.
+Production-grade VLESS + XTLS-Vision + Reality setup with steal-oneself 
+architecture. Designed to bypass deep packet inspection in heavily censored 
+networks. Tested under active DPI infrastructure with focus on TLS 
+consistency, DNS integrity and routing reliability.
 
 ---
 
