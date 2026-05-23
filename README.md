@@ -1,9 +1,8 @@
 # singbox-configs
 
-Production-grade VLESS + XTLS-Vision + Reality setup with steal-oneself 
-architecture. Designed to bypass deep packet inspection in heavily censored 
-networks. Tested under active DPI infrastructure with focus on TLS 
-consistency, DNS integrity and routing reliability.
+Production-grade secure tunneling architecture using VLESS + XTLS-Vision + Reality, TUN routing, FakeIP DNS, and Caddy-based TLS-consistent fallback service.
+
+Designed for restrictive network environments where TLS consistency, DNS integrity, routing reliability, and leak prevention matter.
 
 ---
 
