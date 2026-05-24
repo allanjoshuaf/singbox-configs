@@ -22,7 +22,7 @@ Designed for restrictive network environments where TLS consistency, DNS integri
 │
 │  Looks like: standard HTTPS to your-domain.com
 │
-[DPI / Censorship layer]
+[Restrictive network path]
 │
 │  Sees: TLS 1.3 handshake to a known domain
 │  Reality prevents TLS-in-TLS fingerprinting
@@ -36,7 +36,7 @@ Designed for restrictive network environments where TLS consistency, DNS integri
 └─ Proxy clients → direct outbound
 ```
 
-## What makes this hard to detect
+## Design goals
 
 - **Residential IP** ; no datacenter ASN fingerprint
 - **Reality protocol** ; no TLS-in-TLS, genuine TLS 1.3 handshake
@@ -68,7 +68,7 @@ Traffic is split into three paths:
 
 1. **Direct** ; private IPs, server IP itself, selected 
    game launchers (Steam, Epic, Battle.net, GeForce)
-2. **Through proxy** ; antizapret ruleset 
+2. **Through proxy** ; optional domain/IP ruleset 
    (domains/IPs)
 3. **Default** ; everything else goes through proxy
 
